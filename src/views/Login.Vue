@@ -23,7 +23,7 @@
             login: function() {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     function(user) {
-                        alert('Well done! You are now connected')
+                        this.$router.replace('home')
                     },
                     function(err) {
                         alert('Oops. ' + err.message)
