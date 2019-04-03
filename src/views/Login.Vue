@@ -26,15 +26,21 @@
             };
         },
         methods: {
-            login: function() {
-                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                    function(user) {
-                        this.$router.replace('home')
-                    },
-                    function(err) {
-                        alert('Oops. ' + err.message)
-                    }
-                );
+            login() {
+                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
+                    this.$router.replace('home')
+                }).catch((err) => {
+                    alert('Oops. ' + err.message)
+                });
+            },
+            socialLogin() {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                
+                firebase.auth().signInWithPopup(provider).then((result) => {
+                    this.$router.replace('home');
+                }).catch((err) => {
+                    alert('Oops. ' + err.message)
+                });
             }
         }
     }
