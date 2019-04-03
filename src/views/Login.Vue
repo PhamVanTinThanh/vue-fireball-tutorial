@@ -6,7 +6,7 @@
         <button @click="login">Connection</button>
         <p>
             or Sign In with Google <br>
-            <button class="social-button">
+            <button @click="socialLogin" class="social-button">
                 <img alt="Google Logo" src="../assets/google-logo.png">
             </button>
         </p>
