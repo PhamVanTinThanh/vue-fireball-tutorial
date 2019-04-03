@@ -5,6 +5,8 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+let app = '';
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyC5LA0gEOp_qBKPolM9Rodh-yikaCRxVyc",
@@ -17,7 +19,11 @@ var config = {
 
 firebase.initializeApp(config);
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app');
+firebase.auth().onAuthStateChanged(() => {
+  if(!app) {
+    app = new Vue({
+      router,
+      render: h => h(App)
+    }).$mount('#app');
+  }
+});
